@@ -2,6 +2,14 @@
 
 A repo for practising code golf in.
 
+## This Challenge
+
+A pangram is a sentence that uses every letter of a given alphabet.
+
+Write a program that will receive various sentences as arguments and print those that are valid pangrams, meaning they use all letters from a-z, case insensitive.
+
+<https://code.golf/pangram-grep#php>
+
 ## The Structure
 
 - The `main` branch remains empty on purpose.
