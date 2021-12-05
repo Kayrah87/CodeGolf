@@ -10,8 +10,6 @@ class Solution
      */
     function removeDuplicates(&$nums)
     {
-        //Array must be sorted in place - zero memory usage. array_unique produced a new array. Rethink.
-
         //If the array contains only one value by definition that value is unique
         if(count($nums) == 1) {
             return 1;
@@ -21,32 +19,27 @@ class Solution
 
         //Because it's in ascending order, index 0 will always be the first unique number. Start from index 1.
         for($index = 1; $index < count($nums); $index++) {
-            if($nums[$index] !== $nums[$index-1]) {
-                $nums[$last_inserted + 1] = $nums[$index];
+
+            $existing_occurrences = 0;
+            //run through inserted values
+            for($iv = 0; $iv <= $last_inserted; $iv++) {
+                if($nums[$iv] == $nums[$index]) {
+                    $existing_occurrences++;
+                }
+            }
+
+            if($existing_occurrences <= 1) {
                 $last_inserted++;
+                $nums[$last_inserted] = $nums[$index];
             }
         }
 
         return $last_inserted + 1;
     }
-
-    function checkResult($solution, $expectedResult)
-    {
-        foreach($solution as $index => $integer) {
-            if($integer !== $expectedResult[$index]) {
-                return "wrong";
-            }
-        }
-        return "Correct";
-    }
 }
 
-$solution = new Solution();
-
-$test = [0,0,1,1,1,2,2,3,3,4];
-$expectedResult = [0,1,2,3,4];
-
-$k = $solution->removeDuplicates($test);
-var_dump($k);
+$test = [1,1,1,2,2,3];
+$s = new Solution();
+print_r($s->removeDuplicates($test));
 
 ?>
